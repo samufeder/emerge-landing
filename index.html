@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#e8dcc8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17120d" media="(prefers-color-scheme: dark)">
+
+  <title>Emerge — Qué dice la IA de tu negocio</title>
+  <meta name="description" content="Auditamos qué contestan ChatGPT, Claude y Gemini cuando alguien pregunta por negocios como el tuyo, detectamos a tus rivales reales y te decimos qué hacer. Diagnóstico inicial sin costo.">
+
+  <!-- Reemplazar [TU-DOMINIO] por el dominio real antes de publicar -->
+  <link rel="canonical" href="https://[TU-DOMINIO]/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Emerge">
+  <meta property="og:title" content="Emerge — Qué dice la IA de tu negocio">
+  <meta property="og:description" content="Auditamos qué contestan ChatGPT, Claude y Gemini sobre tu negocio y tus competidores. Diagnóstico inicial sin costo.">
+  <meta property="og:locale" content="es_UY">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Emerge — Qué dice la IA de tu negocio">
+  <meta name="twitter:description" content="Auditamos qué contestan ChatGPT, Claude y Gemini sobre tu negocio y tus competidores.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Emerge",
+    "description": "Auditoría de visibilidad de negocios en respuestas de ChatGPT, Claude y Gemini para Latinoamérica.",
+    "areaServed": "UY",
+    "logo": "https://[TU-DOMINIO]/assets/emerge-logo.png",
+    "sameAs": ["https://www.instagram.com/emerge.ia"]
+  }
+  </script>
+
+  <style>
+    /* ============================================================
+       TOKENS — paleta verificada contra WCAG AA (≥ 4.5:1 en texto)
+       ============================================================ */
+    :root{
+      color-scheme: light;
+      --bg: #e8dcc8;
+      --surface: #f7f1e6;
+      --surface-2: #efe6d4;
+      --ink: #241b12;
+      --ink-2: #6b5c47;
+      --ink-3: #6a5b45;
+      --border: #cdc1af;
+      --border-strong: #b1a695;
+      --accent: #d84315;         /* marcas, bordes, decoración */
+      --accent-strong: #c43c10;  /* relleno de botones (5.2:1 con blanco) */
+      --accent-text: #a5320e;    /* acento usado como texto (5.1:1) */
+      --accent-ink: #ffffff;
+      --accent-wash: rgba(216,67,21,0.10);
+      --accent-border: rgba(216,67,21,0.28);
+      --accent-2: #f0a020;
+      --accent-3: #d9486e;
+      --warning: #b8790a;
+      --shadow: rgba(36,27,18,0.18);
+      --focus: #1c5cab;
+
+      --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+      --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+      --r-sm: 10px; --r-md: 18px; --r-lg: 26px; --r-pill: 999px;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+      --dur-fast: 180ms; --dur: 320ms; --dur-slow: 640ms;
+    }
+    @media (prefers-color-scheme: dark){
+      :root:not([data-theme="light"]){
+        color-scheme: dark;
+        --bg: #17120d;
+        --surface: #211a13;
+        --surface-2: #2a2118;
+        --ink: #f5ede0;
+        --ink-2: #b8a58c;
+        --ink-3: #9a8b76;
+        --border: #322c26;
+        --border-strong: #48423b;
+        --accent: #ff6b35;
+        --accent-strong: #ff6b35;
+        --accent-text: #ff8a5c;
+        --accent-ink: #1a0d04;
+        --accent-wash: rgba(255,107,53,0.10);
+        --accent-border: rgba(255,107,53,0.28);
+        --accent-2: #ffb238;
+        --accent-3: #ff5c86;
+        --warning: #e0a63a;
+        --shadow: rgba(0,0,0,0.45);
+        --focus: #7fb4ff;
+      }
+    }
+    :root[data-theme="dark"]{
+      color-scheme: dark;
+      --bg: #17120d;
+      --surface: #211a13;
+      --surface-2: #2a2118;
+      --ink: #f5ede0;
+      --ink-2: #b8a58c;
+      --ink-3: #9a8b76;
+      --border: #322c26;
+      --border-strong: #48423b;
+      --accent: #ff6b35;
+      --accent-strong: #ff6b35;
+      --accent-text: #ff8a5c;
+      --accent-ink: #1a0d04;
+      --accent-wash: rgba(255,107,53,0.10);
+      --accent-border: rgba(255,107,53,0.28);
+      --accent-2: #ffb238;
+      --accent-3: #ff5c86;
+      --warning: #e0a63a;
+      --shadow: rgba(0,0,0,0.45);
+      --focus: #7fb4ff;
+    }
+
+    /* ============================================================
+       BASE
+       ============================================================ */
+    *, *::before, *::after{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body{
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 16px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+    }
+    h1, h2, h3{ margin: 0; font-family: "Archivo", "Public Sans", system-ui, sans-serif; letter-spacing: -0.01em; text-wrap: balance; }
+    p{ margin: 0; text-wrap: pretty; }
+    a{ color: var(--accent-text); text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 0.15em; }
+    img, svg{ display: block; max-width: 100%; }
+    button{ font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+    :focus-visible{ outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+    ::selection{ background: var(--accent); color: var(--accent-ink); }
+
+    .wrap{ max-width: 1180px; margin: 0 auto; padding-inline: clamp(20px, 4vw, 32px); }
+    .visually-hidden{
+      position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    .skip-link{
+      position: absolute; left: var(--s-4); top: -100px; z-index: 100;
+      background: var(--ink); color: var(--bg); padding: var(--s-3) var(--s-4);
+      border-radius: var(--r-sm); font-weight: 600;
+    }
+    .skip-link:focus{ top: var(--s-4); }
+
+    .eyebrow{
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12.5px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text);
+    }
+
+    /* ---------- Botón: un solo componente, dos variantes ---------- */
+    .btn{
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+      min-height: 48px; padding: 0 26px; border-radius: var(--r-pill);
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 600; font-size: 14px;
+      border: 1px solid transparent; text-decoration: none; white-space: nowrap;
+      transition: transform var(--dur-fast) var(--ease-std), box-shadow var(--dur-fast) var(--ease-std), background var(--dur-fast);
+    }
+    .btn:hover{ text-decoration: none; transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+    .btn--primary{ background: var(--accent-strong); color: var(--accent-ink); box-shadow: 0 10px 24px -12px var(--accent); }
+    .btn--primary:hover{ box-shadow: 0 14px 30px -12px var(--accent); }
+    .btn--ghost{ background: transparent; color: var(--ink); border-color: var(--border-strong); }
+    .btn--ghost:hover{ background: var(--surface); }
+    .btn--sm{ min-height: 44px; padding: 0 20px; font-size: 13px; }
+
+    /* ---------- Fondos orgánicos ---------- */
+    .blob{
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+      filter: blur(60px); opacity: 0.5;
+    }
+    @media (max-width: 720px){ .blob{ filter: blur(40px); opacity: 0.4; } }
+
+    /* ============================================================
+       HEADER / NAV
+       ============================================================ */
+    .site-header{
+      position: sticky; top: 0; z-index: 40;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--dur) var(--ease-std), background var(--dur) var(--ease-std);
+    }
+    .site-header.is-scrolled{ border-bottom-color: var(--border); background: color-mix(in srgb, var(--bg) 92%, transparent); }
+    .nav{ display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); min-height: 72px; }
+    .brand{ display: inline-flex; align-items: center; color: var(--ink); }
+    .brand:hover{ text-decoration: none; opacity: 0.85; }
+    /* Logo oficial como máscara: un solo PNG toma el color de currentColor en claro y oscuro */
+    .logo{
+      display: block; width: 160px; aspect-ratio: 1000 / 188; background: currentColor;
+      -webkit-mask: url(assets/emerge-logo.png) no-repeat center / contain;
+      mask: url(assets/emerge-logo.png) no-repeat center / contain;
+    }
+    @media (max-width: 480px){ .logo{ width: 132px; } }
+    .nav-links{ display: none; align-items: center; gap: var(--s-6); }
+    .nav-links a{ color: var(--ink-2); font-size: 14.5px; font-weight: 500; padding: var(--s-2) 0; }
+    .nav-links a:hover{ color: var(--ink); text-decoration: none; }
+    .nav-cta{ display: none; }
+    .nav-toggle{
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: var(--r-sm); color: var(--ink);
+    }
+    .nav-toggle:hover{ background: var(--surface); }
+    .nav-toggle .icon-close{ display: none; }
+    .nav-toggle[aria-expanded="true"] .icon-menu{ display: none; }
+    .nav-toggle[aria-expanded="true"] .icon-close{ display: block; }
+
+    .nav-menu{
+      display: none; flex-direction: column; gap: var(--s-1);
+      padding: var(--s-3) 0 var(--s-5); border-top: 1px solid var(--border);
+    }
+    .nav-menu.is-open{ display: flex; }
+    .nav-menu a{ display: flex; align-items: center; min-height: 48px; padding: 0 var(--s-2); color: var(--ink); font-weight: 500; border-radius: var(--r-sm); }
+    .nav-menu a:hover{ background: var(--surface); text-decoration: none; }
+    .nav-menu .btn{ margin-top: var(--s-3); align-self: flex-start; }
+
+    @media (min-width: 900px){
+      .nav-links, .nav-cta{ display: inline-flex; }
+      .nav-toggle, .nav-menu{ display: none !important; }
+    }
+
+    /* ============================================================
+       HERO — fijado con scroll (solo donde funciona bien)
+       ============================================================ */
+    .hero{ position: relative; }
+    .hero-stage{
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: var(--s-9) 0 var(--s-8);
+    }
+    .hero-copy{ position: relative; z-index: 1; text-align: center; max-width: 800px; margin: 0 auto; padding-inline: var(--s-5); }
+    .hero-copy .eyebrow{ display: inline-block; margin-bottom: var(--s-4); }
+    .hero-copy h1{ font-size: clamp(34px, 6vw, 68px); line-height: 1.03; font-weight: 700; }
+    .hero-copy h1 em{ font-style: normal; color: var(--accent-text); }
+    .hero-copy .lead{
+      margin: var(--s-5) auto 0; font-size: clamp(16px, 2vw, 19px); line-height: 1.6;
+      color: var(--ink-2); max-width: 56ch;
+    }
+    .hero-cta{ display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; margin-top: var(--s-6); }
+
+    .hero-visual-wrap{ position: relative; z-index: 1; display: flex; justify-content: center; margin-top: var(--s-7); }
+    .hero-visual{
+      width: min(88vw, 620px);
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: var(--s-5); box-shadow: 0 30px 80px -30px var(--shadow);
+      will-change: transform, opacity;
+    }
+    .hero-visual__head{ display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); margin-bottom: var(--s-4); }
+    .hero-visual__label{ display: flex; align-items: center; gap: var(--s-2); font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.04em; color: var(--ink-2); }
+    .dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+    .tag{
+      font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink-2); border: 1px solid var(--border-strong); border-radius: var(--r-pill); padding: 4px 9px; white-space: nowrap;
+    }
+    .chat-q{ background: var(--surface-2); border-radius: 18px 18px 18px 4px; padding: 14px 18px; font-size: 14px; color: var(--ink-2); margin-bottom: var(--s-3); max-width: 80%; }
+    .chat-a{ background: var(--accent-wash); border: 1px solid var(--accent-border); border-radius: 18px 18px 4px 18px; padding: 16px 20px; font-size: 14.5px; line-height: 1.55; margin-left: 8%; }
+    .chat-a b{ color: var(--accent-text); }
+    .hero-visual__foot{
+      display: flex; justify-content: space-between; align-items: center; gap: var(--s-3);
+      margin-top: var(--s-4); padding-top: 14px; border-top: 1px dashed var(--border-strong);
+      font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-2);
+    }
+    .pill-ok{ display: inline-flex; align-items: center; gap: 5px; color: var(--accent-text); font-weight: 600; }
+
+    .scroll-hint{
+      position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 1;
+      display: none; flex-direction: column; align-items: center; gap: 6px;
+      font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+    }
+    .scroll-hint svg{ animation: bob 1.8s ease-in-out infinite; }
+    @keyframes bob{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(5px); } }
+
+    /* El pin sólo en pantallas donde el hero entra completo */
+    @media (min-width: 900px) and (min-height: 720px){
+      .hero{ height: 200vh; }
+      .hero-stage{ position: sticky; top: 0; height: 100vh; padding: var(--s-7) 0 0; }
+      .scroll-hint{ display: flex; }
+      .js .hero-visual{ opacity: 0; transform: translateY(60px) scale(0.92); }
+    }
+
+    /* ============================================================
+       SECCIONES
+       ============================================================ */
+    .section{ position: relative; overflow: hidden; padding: clamp(64px, 10vw, 110px) 0; }
+    .section > .wrap{ position: relative; z-index: 1; }
+    .section--surface{ background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .section--dark{ background: var(--ink); color: var(--bg); }
+    .section-head{ max-width: 620px; margin-bottom: clamp(36px, 5vw, 56px); }
+    .section-head h2{ font-size: clamp(26px, 3.6vw, 40px); font-weight: 700; line-height: 1.14; margin-top: 14px; }
+    .section-head p{ margin-top: 14px; font-size: 16px; line-height: 1.6; color: var(--ink-2); }
+    .section--dark .section-head p{ color: var(--ink-3); }
+    .section--dark .eyebrow{ color: var(--accent); }
+    .below-fold{ content-visibility: auto; contain-intrinsic-size: 1px 800px; }
+
+    /* ---------- Reveal (sólo con JS y sin reduced-motion) ---------- */
+    .js .reveal{ opacity: 0; transform: translateY(22px); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
+    .js .reveal.is-in{ opacity: 1; transform: none; }
+
+    /* ---------- Cards ---------- */
+    .cards{ display: grid; gap: var(--s-5); grid-template-columns: 1fr; }
+    @media (min-width: 720px){ .cards--3{ grid-template-columns: repeat(3, 1fr); } .cards--4{ grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px){ .cards--4{ grid-template-columns: repeat(4, 1fr); } }
+    .card{
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: 30px; box-shadow: 0 18px 40px -28px var(--shadow);
+      transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+    }
+    .card:hover{ transform: translateY(-3px); box-shadow: 0 26px 50px -28px var(--shadow); }
+    .card h3{ font-size: 17px; font-weight: 600; margin-bottom: var(--s-2); }
+    .card p{ font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+    .icon-badge{ width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--s-4); color: #fff; }
+    .step-num{ font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--accent-text); font-weight: 600; margin-bottom: var(--s-3); }
+
+    .section--dark .card{ background: color-mix(in srgb, var(--bg) 8%, var(--ink)); border-color: color-mix(in srgb, var(--bg) 14%, var(--ink)); }
+    .section--dark .card p{ color: var(--ink-3); }
+    .case-tag{ font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: var(--s-2); }
+    .case-num{ font-family: "Archivo", sans-serif; font-size: 40px; font-weight: 700; color: var(--accent); margin-bottom: var(--s-2); line-height: 1; }
+
+    /* ---------- Producto (mockup) ---------- */
+    .product{ background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 24px 60px -32px var(--shadow); }
+    .product__bar{ display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); padding: 16px 22px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
+    .product__brand{ display: flex; align-items: center; gap: var(--s-2); font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 14px; }
+    .product__tabs{ display: flex; gap: 20px; font-size: 13px; color: var(--ink-2); }
+    .product__tabs span[aria-current]{ color: var(--ink); font-weight: 600; }
+    .product__body{ display: grid; grid-template-columns: 1fr; }
+    @media (min-width: 720px){ .product__body{ grid-template-columns: 1.4fr 1fr; } .product__col--split{ border-right: 1px solid var(--border); border-bottom: 0 !important; } }
+    .product__col{ padding: var(--s-5); }
+    .product__col--split{ border-bottom: 1px solid var(--border); }
+    .col-label{ font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); margin-bottom: var(--s-4); }
+    .row{ display: flex; gap: var(--s-3); padding: 13px 0; border-top: 1px solid var(--border); font-size: 14px; line-height: 1.5; }
+    .row:first-of-type{ border-top: 0; padding-top: 0; }
+    .row--between{ justify-content: space-between; align-items: center; }
+    .badge{ flex: none; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .mono{ font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+    .muted{ color: var(--ink-2); }
+
+    /* ---------- CTA ---------- */
+    .cta{ background: var(--accent-strong); color: var(--accent-ink); }
+    .cta h2{ font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.14; max-width: 16ch; margin: 0 auto; text-align: center; }
+    .cta p{ text-align: center; margin-top: 14px; font-size: 16px; color: color-mix(in srgb, var(--accent-ink) 86%, transparent); }
+    .cta__actions{ display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-3); margin-top: var(--s-6); }
+    .cta .btn--light{ background: var(--surface); color: var(--accent-text); }
+    .cta .btn--outline{ background: transparent; color: var(--accent-ink); border-color: color-mix(in srgb, var(--accent-ink) 45%, transparent); }
+    .cta .btn--outline:hover{ background: color-mix(in srgb, var(--accent-ink) 10%, transparent); }
+    .cta__note{ text-align: center; margin-top: var(--s-4); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: color-mix(in srgb, var(--accent-ink) 80%, transparent); }
+
+    /* ---------- Footer ---------- */
+    .site-footer{ background: var(--ink); color: var(--bg); padding: var(--s-6) 0; }
+    .site-footer .wrap{ display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+    .site-footer .brand{ color: var(--bg); font-size: 15px; }
+    .site-footer .meta{ display: flex; flex-wrap: wrap; gap: var(--s-4); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-3); }
+    .site-footer .meta a{ color: var(--ink-3); }
+    .site-footer .meta a:hover{ color: var(--bg); }
+
+    /* ---------- Movimiento reducido ---------- */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *, *::before, *::after{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .js .reveal{ opacity: 1; transform: none; }
+      .js .hero-visual{ opacity: 1 !important; transform: none !important; }
+      .card:hover, .btn:hover{ transform: none; }
+    }
+  </style>
+</head>
+<body>
+<script>(function(c){c.remove('no-js');c.add('js');})(document.documentElement.classList);</script>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="site-header" id="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="#top" aria-label="Emerge, inicio">
+        <span class="logo" aria-hidden="true"></span>
+      </a>
+      <div class="nav-links">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#casos">Casos reales</a>
+        <a href="#producto">Producto</a>
+        <a href="#precios">Precio</a>
+      </div>
+      <a class="btn btn--primary btn--sm nav-cta" href="#contacto">Pedí tu diagnóstico</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+        <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </nav>
+    <div class="nav-menu" id="nav-menu">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#casos">Casos reales</a>
+      <a href="#producto">Producto</a>
+      <a href="#precios">Precio</a>
+      <a class="btn btn--primary" href="#contacto">Pedí tu diagnóstico</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-stage" id="hero-stage">
+      <div class="blob" aria-hidden="true" style="width:520px;height:520px;top:-160px;left:-140px;background:radial-gradient(circle, var(--accent), transparent 70%);"></div>
+      <div class="blob" aria-hidden="true" style="width:440px;height:440px;bottom:-180px;right:-120px;background:radial-gradient(circle, var(--accent-2), transparent 70%);"></div>
+      <div class="blob" aria-hidden="true" style="width:340px;height:340px;top:20%;right:6%;background:radial-gradient(circle, var(--accent-3), transparent 70%);opacity:0.3;"></div>
+
+      <div class="hero-copy">
+        <span class="eyebrow">Aparecé en ChatGPT antes que tu competencia</span>
+        <h1 id="hero-title">Podés tener <em>las mejores reseñas</em> y ser invisible para la IA.</h1>
+        <p class="lead">Cada vez más gente le pregunta a ChatGPT, Claude y Gemini antes de buscar en Google. Te mostramos qué le contesta la IA sobre tu negocio hoy — y qué hacer si no te menciona.</p>
+        <div class="hero-cta">
+          <a class="btn btn--primary" href="#contacto">
+            Pedí tu diagnóstico gratis
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#como-funciona">Cómo funciona</a>
+        </div>
+      </div>
+
+      <div class="hero-visual-wrap">
+        <div class="hero-visual" id="hero-visual" role="img" aria-label="Ejemplo ilustrativo de una respuesta de IA que menciona a un negocio">
+          <div class="hero-visual__head">
+            <span class="hero-visual__label"><span class="dot"></span>CHATGPT · RESPUESTA</span>
+            <span class="tag">Ejemplo ilustrativo</span>
+          </div>
+          <div class="chat-q">¿Cuál es el mejor lugar para esto en mi barrio?</div>
+          <div class="chat-a">Si tuviera que elegir una sola opción, diría <b>[Tu Negocio]</b> — se destaca por la calidad y la atención, con muy buenas reseñas recientes…</div>
+          <div class="hero-visual__foot">
+            <span>Auditado · 3 modelos</span>
+            <span class="pill-ok">Mencionado <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        Scrolleá
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEMA ================= -->
+  <section class="section section--surface below-fold" aria-labelledby="problema-title">
+    <div class="blob" aria-hidden="true" style="width:420px;height:420px;top:-120px;right:-100px;background:radial-gradient(circle, var(--accent-2), transparent 70%);"></div>
+    <div class="blob" aria-hidden="true" style="width:320px;height:320px;bottom:-140px;left:-80px;background:radial-gradient(circle, var(--accent-3), transparent 70%);opacity:0.35;"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">El problema</span>
+        <h2 id="problema-title">La búsqueda ya cambió. ¿Tu negocio también?</h2>
+        <p>En las auditorías reales que hicimos, encontramos negocios con excelentes reseñas en Google que la IA ni siquiera nombra cuando alguien pregunta "¿cuál es el mejor lugar para esto en mi barrio?". Otros descubren que su verdadero competidor no es el que tienen en la cabeza, sino uno que ni sabían que existía.</p>
+      </div>
+      <div class="cards cards--3">
+        <article class="card reveal" style="--i:0">
+          <div class="icon-badge" style="background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent-3));" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 17.5L6.5 20.5L7.6 14.4L3 10.1L9.2 9.2L12 3.5L14.8 9.2L21 10.1L16.4 14.4L17.5 20.5L12 17.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Las reseñas no garantizan nada</h3>
+          <p>Un negocio puede tener 4.8 estrellas y no aparecer en la respuesta que más le importa a un cliente nuevo.</p>
+        </article>
+        <article class="card reveal" style="--i:1">
+          <div class="icon-badge" style="background: radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/></svg>
+          </div>
+          <h3>Tu competencia real no es la que pensás</h3>
+          <p>A veces el rival que te gana el primer puesto ni siquiera está en tu radar.</p>
+        </article>
+        <article class="card reveal" style="--i:2">
+          <div class="icon-badge" style="background: radial-gradient(circle at 30% 30%, var(--accent-3), var(--accent-2));" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12C4 7.6 7.6 4 12 4C15 4 17.6 5.7 19 8.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M20 12C20 16.4 16.4 20 12 20C9 20 6.4 18.3 5 15.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M19 4V8.2H14.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20V15.8H9.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Cuando varias IAs coinciden, no es casualidad</h3>
+          <p>Es una señal real de cómo te está posicionando internet hoy, no ruido aleatorio.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CÓMO FUNCIONA ================= -->
+  <section class="section below-fold" id="como-funciona" aria-labelledby="como-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Cómo funciona</span>
+        <h2 id="como-title">Cuatro pasos, automáticos cada semana</h2>
+        <p>Vos no tenés que tocar nada — el sistema audita solo, vos solo revisás el resultado.</p>
+      </div>
+      <ol class="cards cards--4" style="list-style:none; padding:0; margin:0;">
+        <li class="card reveal" style="--i:0"><div class="step-num">01</div><h3>Auditamos</h3><p>Le hacemos a la IA las mismas preguntas que le haría tu cliente.</p></li>
+        <li class="card reveal" style="--i:1"><div class="step-num">02</div><h3>Detectamos</h3><p>Encontramos a tus rivales reales, no solo a los que vos tenías en mente.</p></li>
+        <li class="card reveal" style="--i:2"><div class="step-num">03</div><h3>Recomendamos</h3><p>Acciones concretas, no un informe genérico que nadie lee.</p></li>
+        <li class="card reveal" style="--i:3"><div class="step-num">04</div><h3>Repetimos</h3><p>Lo corremos solo, todas las semanas, y te avisamos apenas algo cambia.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= CASOS REALES ================= -->
+  <section class="section section--dark below-fold" id="casos" aria-labelledby="casos-title">
+    <div class="blob" aria-hidden="true" style="width:460px;height:460px;top:-140px;right:-120px;background:radial-gradient(circle, var(--accent), transparent 70%);opacity:0.4;"></div>
+    <div class="blob" aria-hidden="true" style="width:360px;height:360px;bottom:-160px;left:8%;background:radial-gradient(circle, var(--accent-2), transparent 70%);opacity:0.3;"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Casos reales</span>
+        <h2 id="casos-title">Esto encontramos auditando negocios de verdad</h2>
+        <p>Datos reales de auditorías ya hechas — nombres omitidos por privacidad.</p>
+      </div>
+      <div class="cards cards--3">
+        <article class="card reveal" style="--i:0">
+          <div class="case-tag">PARRILLA · MONTEVIDEO</div>
+          <div class="case-num">83%</div>
+          <p>de mención, por encima de su competidor principal — pero encontramos 2 rivales sin trackear apareciendo más que uno de los "oficiales".</p>
+        </article>
+        <article class="card reveal" style="--i:1">
+          <div class="case-tag">BAR · POCITOS</div>
+          <div class="case-num">3/3</div>
+          <p>modelos de IA coincidieron exacto en el mismo orden al comparar competidores — y un rival oculto le ganó el primer puesto 2 de cada 3 veces.</p>
+        </article>
+        <article class="card reveal" style="--i:2">
+          <div class="case-tag">EMPRENDIMIENTO ARTESANAL</div>
+          <div class="case-num">1/3</div>
+          <p>modelos de IA sabía que el negocio existía. Así se ve el punto de partida real de un negocio chico — y de ahí se arranca.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRODUCTO ================= -->
+  <section class="section below-fold" id="producto" aria-labelledby="producto-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">El producto</span>
+        <h2 id="producto-title">Esto lo ves todos los días, no una vez al año</h2>
+        <p>Vos elegís 2 o 3 competidores. El panel audita solo y te avisa qué cambió.</p>
+      </div>
+      <div class="product reveal" role="img" aria-label="Vista previa conceptual del panel de Emerge con alertas del día y radar de competidores">
+        <div class="product__bar">
+          <div class="product__brand"><span class="dot"></span>EMERGE</div>
+          <div class="product__tabs"><span aria-current="page">Panel</span><span>Competidores</span><span>Historial</span></div>
+          <span class="tag">Vista previa · concepto</span>
+        </div>
+        <div class="product__body">
+          <div class="product__col product__col--split">
+            <div class="col-label">Alertas de hoy</div>
+            <div class="row">
+              <div class="badge" style="background:var(--accent-strong);"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13L9 17L19 7" stroke="var(--accent-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <p>ChatGPT te nombró primero en la comparación directa contra tus 3 competidores.</p>
+            </div>
+            <div class="row">
+              <div class="badge mono" style="background:var(--warning); color:#2a1c02; font-size:11px; font-weight:700;">!</div>
+              <p>Detectamos un competidor no trackeado apareciendo en el 50% de las respuestas abiertas.</p>
+            </div>
+          </div>
+          <div class="product__col" style="background:var(--surface-2);">
+            <div class="col-label">Radar de competidores</div>
+            <div class="row row--between"><span style="display:flex;align-items:center;gap:8px;"><span class="dot"></span>Vos</span><span class="mono" style="color:var(--accent-text);font-weight:600;">83%</span></div>
+            <div class="row row--between muted"><span style="display:flex;align-items:center;gap:8px;"><span class="dot" style="background:var(--ink-3);"></span>Competidor A</span><span class="mono">67%</span></div>
+            <div class="row row--between muted"><span style="display:flex;align-items:center;gap:8px;"><span class="dot" style="background:var(--ink-3);"></span>Competidor B</span><span class="mono">25%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRECIOS ================= -->
+  <section class="section section--surface below-fold" id="precios" aria-labelledby="precios-title">
+    <div class="wrap">
+      <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+        <span class="eyebrow">Precio</span>
+        <h2 id="precios-title">Un plan, sin letra chica</h2>
+        <p style="margin-left:auto;margin-right:auto;">Monitoreo semanal, sin mínimo de permanencia.</p>
+      </div>
+      <div class="reveal" style="max-width:380px;margin:0 auto;">
+        <article class="card" style="padding:var(--s-6) var(--s-5);text-align:center;">
+          <div style="display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:var(--s-2);">
+            <span style="font-family:'Archivo',sans-serif;font-size:48px;font-weight:800;color:var(--ink);">US$45</span>
+            <span style="color:var(--ink-2);font-size:15px;">/mes</span>
+          </div>
+          <p style="color:var(--ink-2);font-size:13.5px;margin-bottom:var(--s-5);">(≈ 1.800 UYU, cobrado en pesos vía Mercado Pago)</p>
+          <ul style="text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:var(--s-5);list-style:none;padding:0;">
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><path d="M5 13L9 17L19 7" stroke="var(--accent-text)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Auditoría automática semanal en ChatGPT, Claude y Gemini
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><path d="M5 13L9 17L19 7" stroke="var(--accent-text)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Detección automática de competidores
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><path d="M5 13L9 17L19 7" stroke="var(--accent-text)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Revisión técnica de tu web para IA (robots.txt, datos estructurados)
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><path d="M5 13L9 17L19 7" stroke="var(--accent-text)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Recomendaciones de qué mejorar, todas las semanas
+            </li>
+          </ul>
+          <a class="btn btn--primary" style="width:100%;justify-content:center;" href="https://mpago.la/1xJ6k7R" target="_blank" rel="noopener">Suscribirme</a>
+          <p style="margin-top:var(--s-3);font-size:12.5px;color:var(--ink-3);">Cancelás cuando quieras desde Mercado Pago.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="section cta below-fold" id="contacto" aria-labelledby="cta-title">
+    <div class="blob" aria-hidden="true" style="width:400px;height:400px;top:-140px;left:10%;background:radial-gradient(circle, var(--accent-2), transparent 70%);opacity:0.4;"></div>
+    <div class="blob" aria-hidden="true" style="width:340px;height:340px;bottom:-150px;right:8%;background:radial-gradient(circle, var(--accent-3), transparent 70%);opacity:0.35;"></div>
+    <div class="wrap">
+      <h2 id="cta-title">¿Qué dice la IA de tu negocio hoy?</h2>
+      <p>Te mostramos tu diagnóstico real, sin costo y sin compromiso.</p>
+      <div class="cta__actions">
+        <a class="btn btn--light" href="https://wa.me/59894666622?text=Hola!%20Vi%20la%20web%20de%20Emerge%20y%20quiero%20saber%20si%20aparezco%20en%20ChatGPT%20antes%20que%20mi%20competencia." target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 8.6c.2-.4.4-.4.6-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.5l-.5.6c-.1.1-.1.3 0 .4a6 6 0 0 0 2.9 2.7c.2.1.3 0 .4-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5-.1.8-.7 1.5-1.5 1.7-2.6.6-6.5-3.2-6.9-5.8-.1-.8.1-1.6.6-2.2Z" fill="currentColor"/></svg>
+          Escribinos por WhatsApp
+        </a>
+        <a class="btn btn--outline" href="https://www.instagram.com/emerge.ia" target="_blank" rel="noopener">@emerge.ia en Instagram</a>
+      </div>
+      <p class="cta__note">10 minutos. Te contestamos con datos, no con un pitch.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Emerge, volver arriba">
+      <span class="logo" aria-hidden="true" style="width:140px;"></span>
+    </a>
+    <div class="meta">
+      <span>Con el apoyo del CIE de ORT · Montevideo, Uruguay</span>
+      <a href="https://www.instagram.com/emerge.ia" target="_blank" rel="noopener">@emerge.ia</a>
+      <span>© <span id="year">2026</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  // Año dinámico
+  var y = $('#year'); if (y) y.textContent = String(new Date().getFullYear());
+
+  // Header: refuerza el borde al scrollear
+  var header = $('#site-header');
+  var onHeader = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onHeader, { passive: true }); onHeader();
+
+  // Menú móvil accesible
+  var toggle = $('.nav-toggle'), menu = $('#nav-menu');
+  if (toggle && menu) {
+    var setOpen = function (open) {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      menu.classList.toggle('is-open', open);
+    };
+    toggle.addEventListener('click', function () { setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+    $$('a', menu).forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('is-open')) { setOpen(false); toggle.focus(); } });
+  }
+
+  // Reveal al entrar en viewport
+  var reveals = $$('.reveal');
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  // Hero fijado: sólo cuando el layout lo soporta (mismo breakpoint que el CSS)
+  var pinMQ = window.matchMedia('(min-width: 900px) and (min-height: 720px)');
+  var hero = $('.hero'), visual = $('#hero-visual');
+  var ticking = false;
+  function updateHero() {
+    ticking = false;
+    if (!pinMQ.matches || reduced) { visual.style.transform = ''; visual.style.opacity = ''; return; }
+    var rect = hero.getBoundingClientRect();
+    var total = rect.height - window.innerHeight;
+    var progress = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 1;
+    var eased = 1 - Math.pow(1 - Math.min(progress / 0.6, 1), 3);
+    visual.style.transform = 'translateY(' + (60 * (1 - eased)) + 'px) scale(' + (0.92 + 0.08 * eased) + ')';
+    visual.style.opacity = String(eased);
+  }
+  function requestHero() { if (!ticking) { ticking = true; window.requestAnimationFrame(updateHero); } }
+  if (hero && visual) {
+    window.addEventListener('scroll', requestHero, { passive: true });
+    window.addEventListener('resize', requestHero);
+    if (pinMQ.addEventListener) pinMQ.addEventListener('change', requestHero);
+    updateHero();
+  }
+})();
+</script>
+</body>
+</html>
