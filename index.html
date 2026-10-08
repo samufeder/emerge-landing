@@ -386,7 +386,7 @@
         <a href="#casos">Casos reales</a>
         <a href="#producto">Producto</a>
         <a href="#precios">Precio</a>
-        <a href="https://emerge-web-ten.vercel.app/ranking/hamburguesas-montevideo" target="_blank" rel="noopener">Ranking en vivo</a>
+        <a href="#ranking">Ranking en vivo</a>
       </div>
       <a class="btn btn--primary btn--sm nav-cta" href="#contacto">Pedí tu diagnóstico</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
@@ -399,7 +399,7 @@
       <a href="#casos">Casos reales</a>
       <a href="#producto">Producto</a>
       <a href="#precios">Precio</a>
-      <a href="https://emerge-web-ten.vercel.app/ranking/hamburguesas-montevideo" target="_blank" rel="noopener">Ranking en vivo</a>
+      <a href="#ranking">Ranking en vivo</a>
       <a class="btn btn--primary" href="#contacto">Pedí tu diagnóstico</a>
     </div>
   </div>
@@ -609,6 +609,20 @@
     </div>
   </section>
 
+  <!-- ================= RANKING EN VIVO ================= -->
+  <section class="section section--surface below-fold" id="ranking" aria-labelledby="ranking-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Ranking en vivo</span>
+        <h2 id="ranking-title">¿Quién gana hoy la cuota de voz en IA?</h2>
+        <p>Hamburguesas en Montevideo — datos reales, actualizados cada semana. Nadie paga para aparecer mejor acá.</p>
+      </div>
+      <div class="card reveal" id="ranking-embed" style="padding:var(--s-5);max-width:620px;margin:0 auto;">
+        <p class="muted">Cargando ranking…</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= CTA ================= -->
   <section class="section cta below-fold" id="contacto" aria-labelledby="cta-title">
     <div class="blob" aria-hidden="true" style="width:400px;height:400px;top:-140px;left:10%;background:radial-gradient(circle, var(--accent-2), transparent 70%);opacity:0.4;"></div>
@@ -702,6 +716,40 @@
     if (pinMQ.addEventListener) pinMQ.addEventListener('change', requestHero);
     updateHero();
   }
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var el = document.getElementById('ranking-embed');
+  if (!el) return;
+  fetch('https://emerge-web-ten.vercel.app/api/ranking/hamburguesas-montevideo')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data.filas || !data.filas.length) {
+        el.innerHTML = '<p class="muted">Todavía no hay datos suficientes para este ranking.</p>';
+        return;
+      }
+      var html = '';
+      data.filas.slice(0, 10).forEach(function (f, i) {
+        var nombreColor = f.esNegocioBase ? 'var(--accent-text)' : 'var(--ink)';
+        var barraColor = f.esNegocioBase ? 'var(--accent-strong)' : 'var(--ink-3)';
+        html += ''
+          + '<div style="padding:12px 0;' + (i > 0 ? 'border-top:1px solid var(--border);' : '') + '">'
+          +   '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14.5px;margin-bottom:6px;">'
+          +     '<span style="color:' + nombreColor + ';font-weight:' + (f.esNegocioBase ? '700' : '500') + ';">' + (i + 1) + '. ' + f.nombre + '</span>'
+          +     '<span style="font-weight:600;color:var(--ink);white-space:nowrap;">' + f.porcentaje + '%</span>'
+          +   '</div>'
+          +   '<div style="height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden;">'
+          +     '<div style="height:100%;width:' + f.porcentaje + '%;border-radius:999px;background:' + barraColor + ';"></div>'
+          +   '</div>'
+          + '</div>';
+      });
+      el.innerHTML = html;
+    })
+    .catch(function () {
+      el.innerHTML = '<p class="muted">No pudimos cargar el ranking ahora — probá de nuevo en un rato.</p>';
+    });
 })();
 </script>
 </body>
