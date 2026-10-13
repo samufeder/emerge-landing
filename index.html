@@ -732,12 +732,13 @@
       }
       var html = '';
       data.filas.slice(0, 10).forEach(function (f, i) {
-        var nombreColor = f.esNegocioBase ? 'var(--accent-text)' : 'var(--ink)';
-        var barraColor = f.esNegocioBase ? 'var(--accent-strong)' : 'var(--ink-3)';
+        var esPrimero = i === 0;
+        var nombreColor = esPrimero ? 'var(--accent-text)' : 'var(--ink)';
+        var barraColor = esPrimero ? 'var(--accent-strong)' : 'var(--ink-3)';
         html += ''
           + '<div style="padding:12px 0;' + (i > 0 ? 'border-top:1px solid var(--border);' : '') + '">'
           +   '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14.5px;margin-bottom:6px;">'
-          +     '<span style="color:' + nombreColor + ';font-weight:' + (f.esNegocioBase ? '700' : '500') + ';">' + (i + 1) + '. ' + f.nombre + '</span>'
+          +     '<span style="color:' + nombreColor + ';font-weight:' + (esPrimero ? '700' : '500') + ';">' + (i + 1) + '. ' + f.nombre + '</span>'
           +     '<span style="font-weight:600;color:var(--ink);white-space:nowrap;">' + f.porcentaje + '%</span>'
           +   '</div>'
           +   '<div style="height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden;">'
